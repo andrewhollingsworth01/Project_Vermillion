@@ -14,7 +14,7 @@ Keyboard and Mouse Controls:
 "W" - Froward<br>
 "S" - Backwards<br>
 "A" - Left<br>
-Mouse - Rotation<br>
+"D" - Right<br>
 "ESC" - Closing the Window
 
 Gamepad Controlls:<br>
