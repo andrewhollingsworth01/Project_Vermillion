@@ -2,13 +2,15 @@
 #include <iostream>
 #include <vector>
 
+#include "raylib.h"
+
 #include "render/GameRenderer.h"
 #include "render/MenuRenderer.h"
 #include "game/PlayerController.h"
 #include "game/GameState.h"
 #include "game/MenuManager.h"
 #include "Trackers/PerformanceTracking.h"
-#include "raylib.h"
+
 
 using namespace std;
 
