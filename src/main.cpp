@@ -42,9 +42,6 @@ const std::vector<std::vector<int>> worldMap = {
     { 2, 1, 1, 0, 0, 1, 1, 0, 0, 0 }
 };
 
-
-
-
 // Sets the window Width and Height
 int screenWidth = 1280;
 int screenHeight = 720;
@@ -93,16 +90,6 @@ int main()
         // gets the positoion of the mouse for menus 
         Vector2 mousePoint = GetMousePosition();
 
-        if (IsGamepadAvailable(0))
-        {
-            const char* gamepadName = GetGamepadName(0);
-            DrawText(TextFormat("Gamepad detected: %s", gamepadName), 10, 10, 20, DARKGREEN);
-        }
-        else
-        {
-            DrawText("No gamepad detected!", 10, 10, 20, RED);
-        }
-
         // checks if 'TAB' key is pressed
         if (currentState.getStatus() == GameStatus::GAMEPLAY)
         {
@@ -147,12 +134,12 @@ int main()
         }
 
         // Player Boundries
-        /*
+		// Keeps the player within the screen bounds
+		// Curently for testing purposes will cange when world scrolling is added
         if (player.position.x < 0) player.position.x = 0;
         if (player.position.y < 0) player.position.y = 0;
-        if (player.position.x + characterSize.x > GetScreenWidth()) player.position.x = GetScreenWidth() - characterSize.x;
-        if (player.position.y + characterSize.y > GetScreenHeight()) player.position.y = GetScreenHeight() - characterSize.y;
-        */
+        if (player.position.x + characterSize.x > screenWidth) player.position.x = screenWidth - characterSize.x;
+        if (player.position.y + characterSize.y > screenHeight) player.position.y = screenHeight - characterSize.y;
 
         // Draw
         BeginDrawing();
@@ -175,7 +162,7 @@ int main()
         {
             // Renders the game world
             GameRenderer::RenderTileMap(tileset, tileSize, worldMap, tileScale);
-
+			// Renders the player character
             GameRenderer::RenderCharacterTileMap(characterTileset, characterSize, player.position, 0, 1.0f);
         }
 
@@ -195,6 +182,8 @@ int main()
     // De-Initialization
     // Unloading Texture
     UnloadTexture(tileset);
+	UnloadTexture(characterTileset);
+
     // Close window and OpenGL context
     CloseWindow();
 

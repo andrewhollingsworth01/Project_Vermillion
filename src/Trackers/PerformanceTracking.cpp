@@ -34,14 +34,26 @@ void PerformanceTracking::Draw(int x, int y)
 	DrawText(TextFormat("FPS: %d", fps), x, y, 20, GREEN);
 	DrawText(TextFormat("Frame Time: %.2f ms", currentFrameTime), x, y + 25, 20, YELLOW);
 	DrawText(TextFormat("Avg: %.2f ms | Min: %.2f ms | Max: %.2f ms", avg, minFrameTime, maxFrameTime), x, y + 50, 20, ORANGE);
+	// Checks if Game Pad is in use
+	if (IsGamepadAvailable(0))
+	{
+		const char* gamepadName = GetGamepadName(0);
+		// Debug text to see if gamepad is detected
+		DrawText(TextFormat("Gamepad detected: %s", gamepadName), x, y + 75, 20, LIME);
+	}
+	else
+	{
+		// Debug text to see if gamepad is detected
+		DrawText("No gamepad detected!", x, y + 75, 20, DARKGRAY);
+	}
 
 	//float memoryMB = GetMemoryUsageMB();
-	//DrawText(TextFormat("Memory: %.2f MB", memoryMB), x, y + 75, 20, SKYBLUE);
+	//DrawText(TextFormat("Memory: %.2f MB", memoryMB), x, y + 100, 20, SKYBLUE);
 
 	int graphWidth = 200;
 	int graphHeight = 60;
 	int graphX = x;
-	int graphY = y + 110;
+	int graphY = y + 135;
 
 	DrawRectangleLines(graphX, graphY, graphWidth, graphHeight, LIGHTGRAY);
 
@@ -61,6 +73,8 @@ void PerformanceTracking::Draw(int x, int y)
 	}
 
 	DrawText("Frame Time Graph (MS)", graphX, graphY + graphHeight + 5, 16, GRAY);
+
+	
 }
 
 
