@@ -9,4 +9,5 @@ using namespace std;
 namespace MenuRenderer
 {
 	void DrawMainMenu(int selectedButton);
+	void DrawPauseMenu(int selectedButton);
 }

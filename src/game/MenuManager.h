@@ -18,6 +18,7 @@ public:
 	static bool IsMenuOpen();
 	static void UpadateMenu();
 	static void DrawMainMenu();
+	static void DrawPauseMenu();
 
 private:
 	static MenuState currentMenu;

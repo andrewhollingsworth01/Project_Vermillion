@@ -95,3 +95,8 @@ void MenuManager::DrawMainMenu()
 {
 	MenuRenderer::DrawMainMenu(selectedButton);
 }
+
+void MenuManager::DrawPauseMenu()
+{
+    MenuRenderer::DrawPauseMenu(selectedButton);
+}

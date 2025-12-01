@@ -92,16 +92,36 @@ int main()
         // gets the positoion of the mouse for menus 
         Vector2 mousePoint = GetMousePosition();
 
+        if (IsGamepadAvailable(0))
+        {
+            const char* gamepadName = GetGamepadName(0);
+            DrawText(TextFormat("Gamepad detected: %s", gamepadName), 10, 10, 20, DARKGREEN);
+        }
+        else
+        {
+            DrawText("No gamepad detected!", 10, 10, 20, RED);
+        }
+
         // checks if 'TAB' key is pressed
         if (currentState.getStatus() == GameStatus::GAMEPLAY)
         {
-            /*
+           
             // Example: Press TAB to return to the menu
             if (IsKeyPressed(KEY_TAB))
             {
                 currentState.SetStatus(GameStatus::MENU);
+				currentMenu.SetMenu(MenuState::PAUSEMENU);
             }
-            */
+
+            if (IsGamepadAvailable(0))
+            {
+                const char* gamepadName = GetGamepadName(0);
+                if (IsGamepadButtonDown(0, 15)) {
+                    currentState.SetStatus(GameStatus::MENU);
+                    currentMenu.SetMenu(MenuState::PAUSEMENU);
+                }
+            }
+
             player.update();
 
             perf.Update();
@@ -123,28 +143,21 @@ int main()
         {
             MenuManager::UpadateMenu();
             MenuManager::DrawMainMenu();
+            
+        }
+
+        if (currentState.getStatus() == GameStatus::MENU && currentMenu.GetCurrentMenu() == MenuState::PAUSEMENU)
+        {
+            MenuManager::UpadateMenu();
+            MenuManager::DrawPauseMenu();
         }
 
         else if (currentState.getStatus() == GameStatus::GAMEPLAY)
         {
-
-
             // Renders the game world
             GameRenderer::RenderTileMap(tileset, tileSize, worldMap, tileScale);
 
             GameRenderer::RenderCharacterTileMap(characterTileset, characterSize, player.position, 0, 1.0f);
-
-            /*
-            if (IsGamepadAvailable(0))
-            {
-                const char* gamepadName = GetGamepadName(0);
-                DrawText(TextFormat("Gamepad detected: %s", gamepadName), 10, 10, 20, DARKGREEN);
-            }
-            else
-            {
-                DrawText("No gamepad detected!", 10, 10, 20, RED);
-            }
-            */
         }
 
         // Proformance Tracking

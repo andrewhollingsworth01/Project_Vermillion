@@ -28,4 +28,25 @@ namespace MenuRenderer
                 BLACK);
         }
     }
+    void DrawPauseMenu(int selectedButton)
+    {
+		// Same logic from DrawMainMenu but different text
+        DrawText("Pause", 720 / 2 + MeasureText("Pause", 40) / 2 - 75, 150, 40, WHITE);
+
+
+        const char* buttonTexts[] = { "Return to Game", "Exit" };
+
+        // FIGURE OUT HOW TO DYNAMICALLY GET THE SIZE OF BUTTON ARRAYS
+        for (int i = 0; i < 2; i++)
+        {
+            Color buttonColor = (i == selectedButton) ? LIGHTGRAY : GRAY;
+            DrawRectangleRec(MainMenuButton[i], buttonColor);
+            DrawText(
+                buttonTexts[i],
+                (int)(MainMenuButton[i].x + 20),
+                (int)(MainMenuButton[i].y + 10),
+                20,
+                BLACK);
+        }
+    }
 }

@@ -9,6 +9,7 @@ PlayerController::PlayerController(Vector2 startingPosition, float Speed, float 
 
 void PlayerController::update()
 {
+    // In Game input
     HandleKeyboardInput();
 	HandleControllerInput();
 }
