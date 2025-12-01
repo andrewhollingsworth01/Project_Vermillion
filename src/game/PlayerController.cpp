@@ -34,6 +34,31 @@ void PlayerController::HandleControllerInput()
 {
     if (IsGamepadAvailable(0))
     {
+		// ------------- D-PAD INPUT -------------
+
+        // D-Pad Down
+        if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_DOWN))
+        {
+            position.y += speed;
+        }
+        // D-Pad UP
+        if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_UP))
+        {
+            position.y -= speed;
+        }
+        // D-Pad Left
+        if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_LEFT))
+        {
+            position.x -= speed;
+        }
+        // D-Pad Right
+        if (IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_RIGHT))
+        {
+            position.x += speed;
+        }
+        
+        // ------------- Analouge Stick INPUT -------------
+
         // Use the left stick (Axis LeftX and LeftY)
         float moveX = 0.0f;
         float moveY = 0.0f;
@@ -56,7 +81,7 @@ void PlayerController::HandleControllerInput()
         // Boost stick input a bit
         // NEEDS TO BE FIXED 
         // ISSUE: Player is being moved with no input is detected
-        position.x += moveX * speed * 2.0f;
-        position.y += moveY * speed * 2.0f;
+        position.x += moveX * speed;
+        position.y += moveY * speed;
     }
 }
