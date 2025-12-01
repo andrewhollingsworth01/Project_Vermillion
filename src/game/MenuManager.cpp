@@ -33,6 +33,7 @@ bool MenuManager::IsMenuOpen()
 	return true;
 }
 
+// In Menu Input Handling
 void MenuManager::UpadateMenu()
 {
     float delta = GetFrameTime();
@@ -75,7 +76,8 @@ void MenuManager::UpadateMenu()
     // -------- SELECT --------
     bool selectPressed =
         IsKeyPressed(KEY_ENTER) ||
-        IsGamepadButtonPressed(0, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) || // A ON XBOX CONTORLLER
+        // A ON XBOX CONTORLLER
+        IsGamepadButtonPressed(0, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) || 
         IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
 
     if (selectPressed)

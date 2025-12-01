@@ -107,21 +107,37 @@ int main()
         if (currentState.getStatus() == GameStatus::GAMEPLAY)
         {
            
-            // Example: Press TAB to return to the menu
+            // Press TAB to sends the User to the pause menu
             if (IsKeyPressed(KEY_TAB))
             {
                 currentState.SetStatus(GameStatus::MENU);
 				currentMenu.SetMenu(MenuState::PAUSEMENU);
             }
 
+            // Press ESC to sends the User to the main menu
+			// Will change when other menus are created
+            if (IsKeyPressed(KEY_ESCAPE))
+            {
+                currentState.SetStatus(GameStatus::MENU);
+				currentMenu.SetMenu(MenuState::MAINMENU);
+			}
+
             if (IsGamepadAvailable(0))
             {
 				// Press 'START' button to return to the menu
 				// 15 is the 'START' button on an Xbox controller
 				// 0 is the first connected gamepad
-                if (IsGamepadButtonDown(0, 15)) {
+                if (IsGamepadButtonPressed(0, 15)) {
                     currentState.SetStatus(GameStatus::MENU);
                     currentMenu.SetMenu(MenuState::PAUSEMENU);
+                }
+				// Press 'Select' button to return to the main menu
+				// 13 is the 'SELECT' button on an Xbox controller
+				// 0 is the first connected gamepad
+				// Will change when other menus are created
+				if (IsGamepadButtonPressed(0, 13)) {
+                    currentState.SetStatus(GameStatus::MENU);
+                    currentMenu.SetMenu(MenuState::MAINMENU);
                 }
             }
 
