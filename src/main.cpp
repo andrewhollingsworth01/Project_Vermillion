@@ -83,9 +83,10 @@ int main()
     int y = 10;
 
     // Main game loop
-    // Runs until eiither the exit button is press or the 'x' button on the window or 'ESC' key is pressed
+	// Runs until exit button is pressed
+	// Exits when the 'x' button on the window is pressed (needs to be added)
     // WindowShouldClose() = Detect window close button or ESC key (Needs to be re written)
-    while (!WindowShouldClose() && currentState.getStatus() != GameStatus::EXIT)
+    while (currentState.getStatus() != GameStatus::EXIT)
     {
 
         // Update
