@@ -115,7 +115,9 @@ int main()
 
             if (IsGamepadAvailable(0))
             {
-                const char* gamepadName = GetGamepadName(0);
+				// Press 'START' button to return to the menu
+				// 15 is the 'START' button on an Xbox controller
+				// 0 is the first connected gamepad
                 if (IsGamepadButtonDown(0, 15)) {
                     currentState.SetStatus(GameStatus::MENU);
                     currentMenu.SetMenu(MenuState::PAUSEMENU);
